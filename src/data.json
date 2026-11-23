@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "name": "Abhay Kumar",
+    "role": "Senior Frontend Developer",
+    "intro": "I build production-grade web applications with React, JavaScript and TypeScript. I share what I've learned from building, debugging and improving real software — in simple Hinglish.",
+    "email": "abhay0480sharma@gmail.com",
+    "instagram": "https://www.instagram.com/abhaycodess/",
+    "degree": "B.Tech · Computer Science",
+    "college": "Modi Institute of Technology"
+  },
+  "socials": [
+    {
+      "label": "LinkedIn",
+      "url": "https://linkedin.com/in/abhaykumar-sde"
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/abhay0480-eng"
+    },
+    {
+      "label": "Portfolio",
+      "url": "https://ai-portfolio-app-ten.vercel.app"
+    }
+  ],
+  "work": [
+    {
+      "company": "GlobalLogic",
+      "role": "Senior React Developer",
+      "initial": "GL",
+      "color": "#fbe4d6",
+      "type": "Healthcare SaaS",
+      "title": "AI-enabled healthcare platform",
+      "desc": "Built AI-assisted patient report summaries, clinical note generation and a chatbot for patients and doctors. Modernized legacy React modules and improved accessibility.",
+      "tags": [
+        "React",
+        "Claude API",
+        "SSE",
+        "Redux Toolkit"
+      ],
+      "metric": "AI-powered clinical workflows"
+    },
+    {
+      "company": "Nevina Infotech",
+      "role": "React Developer",
+      "initial": "N",
+      "color": "#dfe6ff",
+      "type": "Music streaming",
+      "title": "Music streaming application",
+      "desc": "Developed a music streaming PWA with AI-powered song recommendations using Gemini. Optimized rendering, lazy loading and REST API integration.",
+      "tags": [
+        "React",
+        "TypeScript",
+        "Gemini",
+        "PWA"
+      ],
+      "metric": "30% faster page loads"
+    },
+    {
+      "company": "Netfillip Technologies",
+      "role": "React Developer",
+      "initial": "NT",
+      "color": "#d9eee1",
+      "type": "E-commerce",
+      "title": "Scalable e-commerce frontend",
+      "desc": "Created a reusable component library for a large e-commerce platform, integrated REST APIs and mentored junior developers through code reviews.",
+      "tags": [
+        "React",
+        "Tailwind CSS",
+        "TanStack Query"
+      ],
+      "metric": "40% less development time"
+    },
+    {
+      "company": "Adaan Digital Solutions",
+      "role": "Web Designer",
+      "initial": "A",
+      "color": "#f6e3f3",
+      "type": "Responsive web",
+      "title": "Accessible web interfaces",
+      "desc": "Built mobile-first, accessible interfaces from Figma designs, with cross-browser compatibility and UI improvements.",
+      "tags": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "WCAG"
+      ],
+      "metric": "20% higher mobile retention"
+    }
+  ],
+  "skills": [
+    {
+      "num": "01",
+      "title": "Frontend engineering",
+      "detail": "JavaScript · TypeScript · React · Next.js"
+    },
+    {
+      "num": "02",
+      "title": "Performance & architecture",
+      "detail": "Lazy loading · Memoization · Micro-frontends · Core Web Vitals"
+    },
+    {
+      "num": "03",
+      "title": "Testing & reliability",
+      "detail": "Jest · React Testing Library · Accessibility"
+    },
+    {
+      "num": "04",
+      "title": "AI & application integration",
+      "detail": "Claude API · Gemini API · REST APIs · Redux Toolkit"
+    }
+  ],
+  "projects": [
+    {
+      "type": "FULL-STACK APPLICATION",
+      "title": "Vrooom",
+      "desc": "Bike rental PWA with Firebase authentication, Cloudinary uploads, React 19 and a Node.js backend."
+    },
+    {
+      "type": "REACT APPLICATION",
+      "title": "Quizzically",
+      "desc": "Interactive quiz PWA with real-time answer grading, rate-limit handling and error boundaries."
+    }
+  ],
+  "notes": [
+    {
+      "title": "Core Web Vitals",
+      "desc": "LCP, CLS, INP explained with real-world examples, measurement tools and actionable fixes.",
+      "tag": "Performance",
+      "drive": "https://drive.google.com/file/d/1WsYDAR2CCVyqzzW89u7QHCzAgysR3vT1/view?usp=sharing",
+      "color": "#e8f5e9",
+      "accent": "#2e7d32"
+    }
+  ],
+  "contactTypes": [
+    "Ask a question",
+    "Collaboration",
+    "Other"
+  ]
+}
