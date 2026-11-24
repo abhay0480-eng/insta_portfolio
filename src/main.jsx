@@ -10,6 +10,210 @@ function Arrow() {
   return <span aria-hidden="true">↗</span>;
 }
 
+const KEY_TERMS = [
+  'production-grade web applications',
+  'simple Hinglish',
+  'React 19',
+  'React Fiber',
+  'React',
+  'JavaScript',
+  'TypeScript',
+  'AI-assisted patient report summaries',
+  'clinical note generation',
+  'music streaming PWA',
+  'AI-powered song recommendations',
+  'Gemini',
+  'reusable component library',
+  'mentored junior developers',
+  'mobile-first, accessible interfaces',
+  'LCP, CLS, INP',
+  'actionable fixes',
+  'interruptible rendering',
+  'useTransition',
+  'useDeferredValue',
+  'Firebase authentication',
+  'Node.js',
+  'real-time answer grading',
+  'rate-limit handling',
+  'error boundaries',
+  'beyond memorizing definitions',
+  'real applications',
+  'practical examples',
+  'visual explanations',
+];
+
+const TERM_REGEX = new RegExp(
+  `(${KEY_TERMS.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`,
+  'g'
+);
+
+/* ── Highlight key phrases cleanly in JSX ── */
+function HighlightText({ text }) {
+  if (!text) return null;
+  const parts = text.split(TERM_REGEX);
+  return parts.map((part, i) =>
+    i % 2 === 1 ? (
+      <mark className="hl-key" key={i}>{part}</mark>
+    ) : (
+      <React.Fragment key={i}>{part}</React.Fragment>
+    )
+  );
+}
+
+const ROLE_TOPICS = [
+  'React & TypeScript',
+  'AI-Powered UIs',
+  'Core Web Vitals & PWAs',
+  'Hinglish Tech Teaching',
+];
+
+/* ── Typewriter Sub-role Rotator ── */
+function RoleRotator() {
+  const [idx, setIdx] = useState(0);
+  const [subIdx, setSubIdx] = useState(ROLE_TOPICS[0].length);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    if (
+      typeof window !== 'undefined' &&
+      window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
+    ) {
+      return;
+    }
+
+    const current = ROLE_TOPICS[idx];
+    if (!deleting && subIdx === current.length) {
+      const pause = setTimeout(() => setDeleting(true), 1700);
+      return () => clearTimeout(pause);
+    }
+    if (deleting && subIdx === 0) {
+      setDeleting(false);
+      setIdx(i => (i + 1) % ROLE_TOPICS.length);
+      return;
+    }
+
+    const timeout = setTimeout(
+      () => setSubIdx(s => s + (deleting ? -1 : 1)),
+      deleting ? 35 : 65
+    );
+    return () => clearTimeout(timeout);
+  }, [idx, subIdx, deleting]);
+
+  return (
+    <span className="role-rotator">
+      <span className="role-sep" aria-hidden="true">·</span>
+      <span>{ROLE_TOPICS[idx].slice(0, subIdx)}</span>
+      <span className="type-cursor" aria-hidden="true" />
+    </span>
+  );
+}
+
+/* ── Hand-Drawn SVG Doodles & Illustrations ── */
+function DoodleUnderline() {
+  return (
+    <svg className="doodle-underline" viewBox="0 0 220 18" fill="none" aria-hidden="true">
+      <path
+        className="doodle-draw"
+        d="M4 13C48 4 118 3 216 11"
+        stroke="#2563eb"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+      <path
+        className="doodle-draw delay"
+        d="M28 16C84 10 144 10 194 14"
+        stroke="#059669"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function DoodleSparkle({ className = '' }) {
+  return (
+    <svg className={`doodle-svg ${className}`} viewBox="0 0 36 36" fill="none" aria-hidden="true">
+      <path
+        d="M18 3C18.5 11.5 24.5 17.5 33 18C24.5 18.5 18.5 24.5 18 33C17.5 24.5 11.5 18.5 3 18C11.5 17.5 17.5 11.5 18 3Z"
+        stroke="#2563eb"
+        strokeWidth="2.2"
+        strokeLinejoin="round"
+        fill="#eff6ff"
+      />
+    </svg>
+  );
+}
+
+function DoodleBrackets({ className = '' }) {
+  return (
+    <svg className={`doodle-svg ${className}`} viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <path d="M18 10C13 10 12 13 12 18V21C12 23 9 24 9 24C9 24 12 25 12 27V30C12 35 13 38 18 38" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M30 10C35 10 36 13 36 18V21C36 23 39 24 39 24C39 24 36 25 36 27V30C36 35 35 38 30 38" stroke="#2563eb" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function DoodlePlane({ className = '' }) {
+  return (
+    <svg className={`doodle-svg ${className}`} viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <path d="M41 8L7 22L20 27L35 14L24 30L34 39L41 8Z" stroke="#93c5fd" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M20 27V38L25 32" stroke="#93c5fd" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M6 34C10 35 13 38 14 42" stroke="#60a5fa" strokeWidth="1.8" strokeLinecap="round" strokeDasharray="3 4" />
+    </svg>
+  );
+}
+
+function SkillDoodle({ num }) {
+  const props = { width: 28, height: 28, viewBox: '0 0 32 32', fill: 'none', 'aria-hidden': true };
+  if (num === '01') {
+    return (
+      <svg {...props}>
+        <rect x="4" y="6" width="24" height="20" rx="4" stroke="#2563eb" strokeWidth="2" fill="#eff6ff" />
+        <path d="M4 12H28" stroke="#2563eb" strokeWidth="2" />
+        <path d="M12 17L9 20L12 23M20 17L23 20L20 23M17 16L15 24" stroke="#1d4ed8" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+  if (num === '02') {
+    return (
+      <svg {...props}>
+        <path d="M17 4L7 18H16L15 28L25 14H16L17 4Z" stroke="#059669" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="#ecfdf5" />
+      </svg>
+    );
+  }
+  if (num === '03') {
+    return (
+      <svg {...props}>
+        <path d="M16 4L6 8.5V15.5C6 21.8 10.3 26.9 16 28.5C21.7 26.9 26 21.8 26 15.5V8.5L16 4Z" stroke="#2563eb" strokeWidth="2" strokeLinejoin="round" fill="#eff6ff" />
+        <path d="M11.5 16L14.5 19L20.5 13" stroke="#059669" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+  return (
+    <svg {...props}>
+      <circle cx="16" cy="16" r="5" stroke="#059669" strokeWidth="2" fill="#ecfdf5" />
+      <path d="M16 4V8M16 24V28M4 16H8M24 16H28M7.5 7.5L10.3 10.3M21.7 21.7L24.5 24.5M24.5 7.5L21.7 10.3M10.3 21.7L7.5 24.5" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function ProjectDoodle({ title }) {
+  const isVrooom = title.toLowerCase().includes('vrooom');
+  return isVrooom ? (
+    <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <circle cx="8.5" cy="22.5" r="4.5" stroke="#2563eb" strokeWidth="2" fill="#eff6ff" />
+      <circle cx="23.5" cy="22.5" r="4.5" stroke="#2563eb" strokeWidth="2" fill="#eff6ff" />
+      <path d="M8.5 22.5L14 13H20L23.5 22.5M14 13L11 9H8M18 10H22" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  ) : (
+    <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <rect x="5" y="5" width="22" height="22" rx="6" stroke="#059669" strokeWidth="2" fill="#ecfdf5" />
+      <path d="M12.5 12.5C12.5 10.6 14 9.5 16 9.5C18 9.5 19.5 10.7 19.5 12.4C19.5 14 18.2 14.7 16.9 15.4C16.2 15.8 16 16.3 16 17.5" stroke="#047857" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="16" cy="21.5" r="1.2" fill="#047857" />
+    </svg>
+  );
+}
+
 /* ── Top Scroll Progress Bar ── */
 function ScrollProgress() {
   const [progress, setProgress] = useState(0);
@@ -290,7 +494,7 @@ function NoteCard({ note, onOpen }) {
       <div className="note-body">
         <span className="note-tag" style={{ color: note.accent }}>{note.tag}</span>
         <h3 className="note-title">{note.title}</h3>
-        <p className="note-desc">{note.desc}</p>
+        <p className="note-desc"><HighlightText text={note.desc} /></p>
       </div>
       <span className="note-dl" aria-hidden="true">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
@@ -356,7 +560,7 @@ function WorkCard({ w, defaultOpen = false }) {
         <div className="work-body">
           <div className="work-body-inner">
             <h4>{w.title}</h4>
-            <p className="description">{w.desc}</p>
+            <p className="description"><HighlightText text={w.desc} /></p>
             <div className="tags">{w.tags.map(t => <span key={t}>{t}</span>)}</div>
             <div className="metric"><span>↗</span>{w.metric}</div>
           </div>
@@ -377,9 +581,12 @@ function Contact() {
   return (
     <Reveal className="contact-panel" id="contact">
       <div>
-        <span className="kicker light">INBOX / OPEN</span>
+        <div className="contact-head-row">
+          <span className="kicker light">INBOX / OPEN</span>
+          <DoodlePlane className="doodle-plane" />
+        </div>
         <h2>Let's talk<span className="lime">.</span></h2>
-        <p>Stuck on a frontend concept? Have an idea for a reel or want to collaborate? Drop me a message.</p>
+        <p>Stuck on a <span className="hl-dark">frontend concept</span>? Have an idea for a <span className="hl-dark">reel</span> or want to <span className="hl-dark">collaborate</span>? Drop me a message.</p>
         <a className="email" href={`mailto:${meta.email}`}>{meta.email} <Arrow /></a>
       </div>
       <form
@@ -463,14 +670,27 @@ function App() {
 
       <main className="shell">
         <section id="top" className="hero">
-          <div className="hero-stagger">
+          <div className="hero-stagger hero-copy">
             <div className="hero-badge">
               <span className="hero-badge-dot" aria-hidden="true" />
               HELLO, I'M ABHAY
             </div>
-            <h1>Abhay <em>Kumar.</em></h1>
-            <div className="role">{meta.role}</div>
-            <p className="intro">{meta.intro}</p>
+            <h1>
+              <span className="word-mask">
+                <span className="word-rise">Abhay</span>
+              </span>{' '}
+              <span className="hero-em-wrap">
+                <span className="word-mask">
+                  <em className="word-rise delay">Kumar.</em>
+                </span>
+                <DoodleUnderline />
+              </span>
+            </h1>
+            <div className="role">
+              <span>{meta.role}</span>
+              <RoleRotator />
+            </div>
+            <p className="intro"><HighlightText text={meta.intro} /></p>
             <div className="hero-actions">
               <a className="primary" href="#work">Explore my experience ↓</a>
               {linkedInUrl && (
@@ -480,6 +700,8 @@ function App() {
           </div>
 
           <aside className="identity identity-enter">
+            <DoodleSparkle className="doodle-float-tr" />
+            <DoodleBrackets className="doodle-float-bl" />
             <div className={`avatar-ring${introPlaying ? ' playing' : ''}`}>
               <img src="/avatar.png" alt={`${meta.name}'s professional portrait`} />
             </div>
@@ -522,7 +744,14 @@ function App() {
           </div>
           <div className="skills-grid">
             {skills.map(s => (
-              <article key={s.num}><span>{s.num}</span><h3>{s.title}</h3><p>{s.detail}</p></article>
+              <article key={s.num}>
+                <div className="skill-card-head">
+                  <span>{s.num}</span>
+                  <SkillDoodle num={s.num} />
+                </div>
+                <h3>{s.title}</h3>
+                <p>{s.detail}</p>
+              </article>
             ))}
           </div>
         </Reveal>
@@ -539,19 +768,25 @@ function App() {
           </div>
           <div className="work-grid">
             {projects.map(p => (
-              <article className="work-card" key={p.title}>
-                <div className="kicker">{p.type}</div>
+              <article className="work-card project-card" key={p.title}>
+                <div className="project-card-head">
+                  <div className="kicker">{p.type}</div>
+                  <ProjectDoodle title={p.title} />
+                </div>
                 <h4>{p.title}</h4>
-                <p className="description">{p.desc}</p>
+                <p className="description"><HighlightText text={p.desc} /></p>
               </article>
             ))}
           </div>
         </Reveal>
 
         <Reveal as="section" className="statement">
+          <div className="statement-rings" aria-hidden="true">
+            <span /><span /><span /><span /><span />
+          </div>
           <span className="kicker">MY APPROACH TO TEACHING</span>
-          <h2>Understand the why, <em>not just the answer.</em></h2>
-          <p>Interview preparation should go beyond memorizing definitions. My goal is to make the concepts I use in real applications easier to understand, with practical examples and visual explanations.</p>
+          <h2>Understand the why, <em className="highlighter">not just the answer.</em></h2>
+          <p><HighlightText text="Interview preparation should go beyond memorizing definitions. My goal is to make the concepts I use in real applications easier to understand, with practical examples and visual explanations." /></p>
         </Reveal>
 
         <NotesSection />

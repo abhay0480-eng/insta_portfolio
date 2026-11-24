@@ -51,10 +51,12 @@ body {
   font-size: 16px;
   line-height: 1.55;
   overflow-x: hidden;
-  background:
-    radial-gradient(900px 500px at 85% -5%, rgba(37, 99, 235, 0.06), transparent 60%),
-    radial-gradient(700px 420px at 10% 25%, rgba(5, 150, 105, 0.05), transparent 60%),
-    var(--bg);
+background-color: var(--bg);
+    background-image:
+        radial-gradient(900px 500px at 88% -5%, rgba(37, 99, 235, 0.07), transparent 60%),
+        radial-gradient(700px 420px at 8% 28%, rgba(5, 150, 105, 0.06), transparent 60%),
+        radial-gradient(#d6d3c9 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 24px 24px;
 }
 
 a {
@@ -267,9 +269,77 @@ h2 {
 .role {
   font-weight: 700;
   font-size: 19px;
+font-size: 18px;
   color: var(--ink);
   margin-bottom: 14px;
   letter-spacing: -0.02em;
+display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.role-rotator {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue);
+    background: var(--blue-soft);
+    border: 1px solid #bfdbfe;
+    padding: 3px 10px;
+    border-radius: 999px;
+}
+
+.role-sep {
+    color: var(--emerald);
+}
+
+.type-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 14px;
+    background: var(--blue);
+    animation: blink-cursor 0.9s step-end infinite;
+}
+
+@keyframes blink-cursor {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ── Masked Word Rise Animation ── */
+.word-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    padding-bottom: 4px;
+    margin-bottom: -4px;
+}
+
+.word-rise {
+    display: inline-block;
+    transform: translateY(110%);
+    animation: word-up 0.72s var(--ease-out) 0.08s forwards;
+}
+
+.word-rise.delay {
+    animation-delay: 0.2s;
+}
+
+@keyframes word-up {
+    to {
+        transform: translateY(0);
+    }
 }
 
 .intro {
@@ -311,25 +381,110 @@ h2 {
 .primary {
   background: var(--ink);
   color: #fff;
-  box-shadow: 0 8px 20px rgba(17, 24, 39, 0.14);
+border: 1.5px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--blue);
 }
 
 .primary:hover {
   background: var(--blue);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.24);
+border-color: var(--blue);
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0 var(--ink);
 }
 
 .secondary {
   background: var(--surface);
-  border: 1px solid var(--border-strong);
+border: 1.5px solid var(--ink);
   color: var(--ink);
+box-shadow: 3px 3px 0 var(--border-strong);
 }
 
 .secondary:hover {
   border-color: var(--blue);
   color: var(--blue);
-  transform: translateY(-2px);
+transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 #bfdbfe;
+}
+
+/* ── Hero Doodle Artwork ── */
+.hero-em-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.doodle-underline {
+    position: absolute;
+    left: -2%;
+    bottom: -6px;
+    width: 104%;
+    height: 16px;
+    pointer-events: none;
+}
+
+.doodle-draw {
+    stroke-dasharray: 260;
+    stroke-dashoffset: 260;
+    animation: draw-line 0.9s var(--ease-out) 0.45s forwards;
+}
+
+.doodle-draw.delay {
+    animation-delay: 0.65s;
+}
+
+@keyframes draw-line {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.doodle-svg {
+    pointer-events: none;
+}
+
+.doodle-float-tr {
+    position: absolute;
+    top: -14px;
+    right: -10px;
+    width: 34px;
+    height: 34px;
+    animation: float-doodle 4.5s ease-in-out infinite;
+}
+
+.doodle-float-bl {
+    position: absolute;
+    bottom: -14px;
+    left: -12px;
+    width: 40px;
+    height: 40px;
+    animation: float-doodle 5.2s ease-in-out infinite 0.6s;
+}
+
+@keyframes float-doodle {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-6px) rotate(5deg);
+    }
+}
+
+@media (max-width: 479px) {
+    .doodle-float-tr {
+        right: 4px;
+        top: -12px;
+        width: 28px;
+        height: 28px;
+    }
+
+    .doodle-float-bl {
+        left: 6px;
+        bottom: -12px;
+        width: 32px;
+        height: 32px;
+    }
 }
 
 /* ── Identity Card ── */
@@ -340,15 +495,15 @@ h2 {
   gap: 18px;
   padding: 20px;
   background: var(--surface);
-  border: 1px solid var(--border);
+border: 1.5px solid var(--ink);
   border-radius: 24px;
-  box-shadow: 0 12px 32px rgba(17, 24, 39, 0.05);
+box-shadow: 6px 6px 0 #dbeafe;
   transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
 }
 
 .identity:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.09);
+transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 #bfdbfe;
 }
 
 .avatar-ring {
@@ -731,27 +886,39 @@ h2 {
 .skills-grid article {
   padding: 20px;
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 16px;
+border: 1.5px solid var(--border-strong);
+    border-radius: 18px;
+    box-shadow: 4px 4px 0 var(--surface-muted);
   transition: transform 0.25s var(--ease-out), border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .skills-grid article:hover {
-  transform: translateY(-2px);
-  border-color: #93c5fd;
-  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.06);
+transform: translate(-2px, -2px);
+    border-color: var(--ink);
+    box-shadow: 5px 5px 0 #dbeafe;
 }
 
-.skills-grid article > span {
+.skill-card-head,
+.project-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.skill-card-head>span {
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--blue);
   font-weight: 600;
 }
 
+.project-card-head {
+    margin-bottom: 10px;
+}
 .skills-grid h3 {
   font-weight: 700;
-  margin: 8px 0 6px;
+margin: 10px 0 6px;
   font-size: 17px;
   letter-spacing: -0.02em;
 }
@@ -763,13 +930,76 @@ h2 {
   margin: 0;
 }
 
-/* ── Statement Banner ── */
+/* ── Ruled-Notebook Statement Banner ── */
 .statement {
-  background: linear-gradient(135deg, var(--blue-soft) 0%, #f5f3ff 100%);
-  border: 1px solid #dbeafe;
+position: relative;
+    background-color: #fffef9;
+    background-image: repeating-linear-gradient(transparent,
+            transparent 29px,
+            rgba(37, 99, 235, 0.08) 30px);
+    border: 1.5px solid var(--ink);
   border-radius: 24px;
-  padding: 28px;
-  margin: 18px 0 32px;
+padding: 36px 26px 28px;
+    margin: 22px 0 34px;
+    box-shadow: 6px 6px 0 #dbeafe;
+}
+
+.statement-rings {
+    position: absolute;
+    top: -11px;
+    left: 28px;
+    display: flex;
+    gap: 18px;
+}
+
+.statement-rings span {
+    width: 14px;
+    height: 22px;
+    border-radius: 999px;
+    border: 2px solid var(--ink);
+    background: var(--bg);
+}
+
+.highlighter {
+    background: linear-gradient(180deg, transparent 58%, #fef08a 58%, #fef08a 92%, transparent 92%);
+    padding: 0 4px;
+    background-image: linear-gradient(180deg, transparent 56%, #fef08a 56%, #fef08a 92%, transparent 92%);
+    background-repeat: no-repeat;
+    background-size: 0% 100%;
+    background-position: left center;
+    padding: 0 4px;
+    transition: background-size 0.85s var(--ease-out) 0.25s;
+}
+
+.hl-key {
+  background: linear-gradient(180deg, transparent 58%, rgba(254, 240, 138, 0.78) 58%, rgba(254, 240, 138, 0.78) 94%, transparent 94%);
+  color: var(--ink);
+  font-weight: 700;
+  padding: 0 2px;
+  border-radius: 3px;
+}
+
+.hl-dark {
+  color: #ffffff;
+  font-weight: 700;
+  border-bottom: 2px solid #60a5fa;
+  padding-bottom: 1px;
+}
+
+.reveal.in-view .highlighter {
+    background-size: 100% 100%;
+}
+
+/* ── Section Heading Text Reveal ── */
+.reveal h2 {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.6s var(--ease-out) 0.08s, transform 0.6s var(--ease-out) 0.08s;
+}
+
+.reveal.in-view h2 {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .statement p {
@@ -787,8 +1017,8 @@ h2 {
   border-radius: 24px;
   padding: 26px;
   margin: 20px 0 32px;
-  border: 1.5px solid var(--emerald-border);
-  box-shadow: 0 12px 32px rgba(5, 150, 105, 0.07);
+border: 1.5px solid var(--ink);
+    box-shadow: 6px 6px 0 #a7f3d0;
 }
 
 .notes-kicker {
@@ -1054,6 +1284,18 @@ h2 {
   box-shadow: 0 20px 44px rgba(17, 24, 39, 0.16);
 }
 
+.contact-head-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.doodle-plane {
+    width: 38px;
+    height: 38px;
+    animation: float-doodle 4.8s ease-in-out infinite;
+}
 .contact-panel h2 {
   color: #ffffff;
   font-size: clamp(34px, 5vw, 48px);
