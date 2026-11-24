@@ -6,7 +6,9 @@
     "email": "abhay0480sharma@gmail.com",
     "instagram": "https://www.instagram.com/abhaycodess/",
     "degree": "B.Tech · Computer Science",
-    "college": "Modi Institute of Technology"
+    "college": "Modi Institute of Technology",
+    "introAudio": "/audio/intro.mp3",
+    "introAudioDuration": "0:30"
   },
   "socials": [
     {
@@ -129,6 +131,14 @@
       "drive": "https://drive.google.com/file/d/1gU0vOETNfdu_Lih4qDHJaiefdDXuToJa/view?usp=sharing",
       "color": "#e8f5e9",
       "accent": "#2e7d32"
+    },
+    {
+      "title": "Concurrent Rendering",
+      "desc": "React Fiber, interruptible rendering, useTransition and useDeferredValue explained for interviews.",
+      "tag": "React",
+      "drive": "https://drive.google.com/file/d/1zL33pEkPU5scntb5xD3BTcOyZcd4Wk9H/view?usp=sharing",
+      "color": "#e3f2fd",
+      "accent": "#1565c0"
     }
   ],
   "contactTypes": [
